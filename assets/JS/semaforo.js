@@ -4,6 +4,8 @@ var yellowCircle = document.getElementById('yellow');
 var greenCircle = document.getElementById('green');
 var btnMudar = document.getElementById('btnMudar');
 var cont = 0;
+var flag = false;
+var timer = undefined;
 
 // variaveis de tempo
 
@@ -18,10 +20,8 @@ greenCircle.classList.add('grey');
 
 // declarando função para o click do botão
 var iniciar = function() {
-    // limpa o setInterval para não permitir que ele rode mais de uma vez
-    clearInterval(timer);
     // declarando intervalo de tempo
-    var timer = setInterval(function() {
+    timer = setInterval(function() {
         // incrementando ao contador de 1 em 1 segundo
        cont++;
        console.log(cont);
@@ -93,6 +93,6 @@ var iniciar = function() {
    }, 1000);
 };
 
-var manutencao = function() {
-
+function manutencao () {
+    clearInterval(timer);
 }
