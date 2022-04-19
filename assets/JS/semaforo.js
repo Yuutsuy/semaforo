@@ -49,5 +49,5 @@ var mudar = function() {
            greenCircle.classList.add('grey');
            greenCircle.innerText = "";
        }
-   }, 500);
+   }, 1000);
 };
