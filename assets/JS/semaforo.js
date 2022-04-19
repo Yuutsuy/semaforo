@@ -5,6 +5,12 @@ var greenCircle = document.getElementById('green');
 var btnMudar = document.getElementById('btnMudar');
 var cont = 0;
 
+// variaveis de tempo
+
+var tempRed = 10;
+var tempYellow = 4;
+var tempGreen = 15;
+
 // fazendo as variaveis receber classList
 redCircle.classList.add('grey');
 yellowCircle.classList.add('grey');
@@ -12,13 +18,15 @@ greenCircle.classList.add('grey');
 
 // declarando função para o click do botão
 var mudar = function() {
+    // limpa o setInterval para não permitir que ele rode mais de uma vez
+    clearInterval(timer);
     // declarando intervalo de tempo
     var timer = setInterval(function() {
         // incrementando ao contador de 1 em 1 segundo
        cont++;
        console.log(cont);
     //    condição para ligar o semáforo vermelho
-       if(cont <= 15) {
+       if(cont <= tempRed) {
             //    remove class grey na div red
            redCircle.classList.remove('grey');
            //    adicionando class grey na div red
@@ -32,7 +40,7 @@ var mudar = function() {
                 redCircle.innerText = (cont);  
            };
     //    condição para ligar o semáforo amarelo
-       }else if(cont <= 19) {
+       }else if(cont <= (tempRed + tempGreen)) {
             //    limpa o texto dentro da div red
            redCircle.innerText = "";
            //    remove class divRed na div red
@@ -40,43 +48,47 @@ var mudar = function() {
            //    adiciona class grey na div red
            redCircle.classList.add('grey');
            //    remove class grey na div yellow
-           yellowCircle.classList.remove('grey');
+           greenCircle.classList.remove('grey');
            //    adiciona class divYellow na div yellow
-           yellowCircle.classList.add('divYellow');
+           greenCircle.classList.add('divGreen');
            //    condição para imprimir texto dentro da div yellow
-           if(cont - 15 <= 9) {
-               yellowCircle.innerText = (`0${cont - 15}`);
+           if((cont - tempRed) <= 9) {
+               greenCircle.innerText = (`0${cont - tempRed}`);
             }else{
-                yellowCircle.innerText = (cont - 15);  
+                greenCircle.innerText = (cont - tempRed);  
             };
     //    condição para ligar o semáforo verde
-       }else if(cont <= 39) {
+       }else if(cont <= (tempRed + tempYellow + tempGreen)) {
            //    limpa o texto na div yellow
-           yellowCircle.innerText = "";
+           greenCircle.innerText = "";
            //    remove class divYellow na div yellow
-           yellowCircle.classList.remove('divYellow');
+           greenCircle.classList.remove('divGreen');
            //    adiciona class grey na div yellow
-           yellowCircle.classList.add('grey');
+           greenCircle.classList.add('grey');
            //    remove class grey na div green
-           greenCircle.classList.remove('grey');
+           yellowCircle.classList.remove('grey');
            //    adiciona class divGreen na div green
-           greenCircle.classList.add('divGreen');
+           yellowCircle.classList.add('divYellow');
            //    condição para imprimir texto dentro da div green
-           if(cont - 19 <= 9) {
-               greenCircle.innerText = (`0${cont - 19}`);
+           if((cont - (tempRed + tempGreen)) <= 9) {
+               yellowCircle.innerText = (`0${cont - (tempRed + tempGreen)}`);
             }else{
-                greenCircle.innerText = (cont - 19);  
+                yellowCircle.innerText = (cont - (tempRed + tempGreen));  
             };
     //    condição para resetar
        }else{
             //    zera contador
-           cont = 0;
+           cont = 1;
            //    remove class divGreen na div green
-           greenCircle.classList.remove('divGreen');
+           yellowCircle.classList.remove('divYellow');
            //    adiciona class grey na div green
-           greenCircle.classList.add('grey');
+           yellowCircle.classList.add('grey');
            //    limpa texto dentro da div green
-           greenCircle.innerText = "";
+           yellowCircle.innerText = "";
+           redCircle.classList.remove('grey');
+           redCircle.classList.add('divRed');
+           redCircle.innerText = (`0${cont}`);
+        
        }
    }, 1000);
 };
