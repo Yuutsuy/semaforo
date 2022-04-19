@@ -17,7 +17,7 @@ yellowCircle.classList.add('grey');
 greenCircle.classList.add('grey');
 
 // declarando função para o click do botão
-var mudar = function() {
+var iniciar = function() {
     // limpa o setInterval para não permitir que ele rode mais de uma vez
     clearInterval(timer);
     // declarando intervalo de tempo
@@ -92,3 +92,7 @@ var mudar = function() {
        }
    }, 1000);
 };
+
+var manutencao = function() {
+
+}
