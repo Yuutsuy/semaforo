@@ -16,19 +16,31 @@ body {
 
 #container .circles {
     position:relative;
+    text-align:center;
     border-radius:100%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
     margin:10px;
     width:85%;
     height:100%;
 }
+
 .grey {
     background-color:grey;
 }
+
 #botao button {
     width:150px;
     height:40px;
     margin:10px;
 }
-.btnRed {
+.divRed {
     background-color: red;
+}
+.divYellow {
+    background-color: yellow;
+}
+.divGreen {
+    background-color: green;
 }
