@@ -30,6 +30,8 @@ body {
     margin:10px;
     width:85%;
     height:100%;
+    font-size:100px;
+    color:white;
 }
 
 #botao button {

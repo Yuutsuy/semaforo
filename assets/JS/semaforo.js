@@ -25,7 +25,12 @@ pedCircle2.classList.add('grey');
 
 // declarando função para o click do botão
 var iniciar = function() {
+    // limpa o timer para evitar chamar o método do botão Iniciar mais de uma vez
+    clearInterval(timer);
+    // limpa o mudar para evitar chamar o método do botão Manutenção mais de uma vez
     clearInterval(mudar);
+    yellowCircle.classList.remove('divYellow');
+    yellowCircle.classList.add('grey');
     // declarando intervalo de tempo
     timer = setInterval(function() {
         // incrementando ao contador de 1 em 1 segundo
@@ -100,6 +105,9 @@ var iniciar = function() {
 };
 
 function manutencao () {
+    // limpa o mudar para evitar chamar o método do botão Manutenção mais de uma vez
+    clearInterval(mudar);
+    // limpa o timer para evitar chamar o método do botão Iniciar mais de uma vez
     clearInterval(timer);
     cont = 0;
     redCircle.classList.remove('divRed');
