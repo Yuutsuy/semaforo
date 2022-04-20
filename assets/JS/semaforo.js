@@ -6,6 +6,7 @@ var btnMudar = document.getElementById('btnMudar');
 var cont = 0;
 var flag = false;
 var timer = undefined;
+var mudar = undefined;
 
 // variaveis de tempo
 
@@ -95,4 +96,24 @@ var iniciar = function() {
 
 function manutencao () {
     clearInterval(timer);
-}
+    redCircle.classList.remove('divRed');
+    yellowCircle.classList.remove('divYellow');
+    greenCircle.classList.remove('divGreen');
+    redCircle.classList.add('grey');
+    yellowCircle.classList.add('grey');
+    greenCircle.classList.add('grey');
+    redCircle.innerText = "";
+    yellowCircle.innerText = "";
+    greenCircle.innerText = "";
+    mudar = setInterval(function() {
+        if(!flag) {
+        flag = true;
+            yellowCircle.classList.remove('grey');
+            yellowCircle.classList.add('divYellow');
+        }else{
+            flag = false;
+            yellowCircle.classList.add('grey');
+            yellowCircle.classList.remove('divYellow');
+        }
+    }, 300);
+};
