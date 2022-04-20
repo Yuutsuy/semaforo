@@ -2,8 +2,15 @@ body {
     overflow:hidden;
 }
 
+
 #container {
+    width:40%;
+    display:flex;
+    justify-content:space-between;
+}
+#container #semaforo {
     border: 2px solid black;
+    border-radius:10px;
     position:relative;
     margin:10px;
     top:10px;
@@ -13,8 +20,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
-
-#container .circles {
+#container #semaforo .circles {
     position:relative;
     text-align:center;
     border-radius:100%;
@@ -26,14 +32,14 @@ body {
     height:100%;
 }
 
-.grey {
-    background-color:grey;
-}
-
 #botao button {
     width:150px;
     height:40px;
     margin:10px;
+}
+
+.grey {
+    background-color:grey;
 }
 .divRed {
     background-color: red;
@@ -43,4 +49,28 @@ body {
 }
 .divGreen {
     background-color: green;
+}
+
+#container #pedestre {
+    width:120px;
+    height:250px;
+    border: 2px solid black;
+    position:relative;
+    margin:10px;
+    top:10px;
+    display:flex;
+    flex-direction: column;
+    border-radius:10px;
+}
+
+#container #pedestre .pedCircle {
+    position:relative;
+    text-align:center;
+    border-radius:100%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    margin:10px;
+    width:85%;
+    height:100%;
 }

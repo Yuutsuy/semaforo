@@ -3,6 +3,8 @@ var redCircle = document.getElementById('red');
 var yellowCircle = document.getElementById('yellow');
 var greenCircle = document.getElementById('green');
 var btnMudar = document.getElementById('btnMudar');
+var pedCircle1 = document.getElementById('pedCircle1');
+var pedCircle2 = document.getElementById('pedCircle2');
 var cont = 0;
 var flag = false;
 var timer = undefined;
@@ -18,9 +20,12 @@ var tempGreen = 15;
 redCircle.classList.add('grey');
 yellowCircle.classList.add('grey');
 greenCircle.classList.add('grey');
+pedCircle1.classList.add('grey');
+pedCircle2.classList.add('grey');
 
 // declarando função para o click do botão
 var iniciar = function() {
+    clearInterval(mudar);
     // declarando intervalo de tempo
     timer = setInterval(function() {
         // incrementando ao contador de 1 em 1 segundo
@@ -96,6 +101,7 @@ var iniciar = function() {
 
 function manutencao () {
     clearInterval(timer);
+    cont = 0;
     redCircle.classList.remove('divRed');
     yellowCircle.classList.remove('divYellow');
     greenCircle.classList.remove('divGreen');
