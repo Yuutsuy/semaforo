@@ -1,5 +1,6 @@
 body {
     overflow:hidden;
+    font-family: 'Doppio One', sans-serif;
 }
 
 
@@ -31,7 +32,6 @@ body {
     width:85%;
     height:100%;
     font-size:100px;
-    color:white;
 }
 
 #botao button {
@@ -44,13 +44,16 @@ body {
     background-color:grey;
 }
 .divRed {
-    background-color: red;
+    background-color: #FF6B6B;
+    color:white;
 }
 .divYellow {
-    background-color: yellow;
+    background-color: #FFD93D;
+    color:black;
 }
 .divGreen {
-    background-color: green;
+    background-color: #6BCB77;
+    color:white;
 }
 
 #container #pedestre {

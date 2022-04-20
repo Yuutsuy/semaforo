@@ -6,12 +6,15 @@ var btnMudar = document.getElementById('btnMudar');
 var pedCircle1 = document.getElementById('pedCircle1');
 var pedCircle2 = document.getElementById('pedCircle2');
 var cont = 0;
+// flag usada no botão Iniciar
+var flagSem = false;
+// flag usada no botão Manutenção
 var flag = false;
+// variaveis definidas para utilizar nos setInterval dos botões
 var timer = undefined;
 var mudar = undefined;
 
 // variaveis de tempo
-
 var tempRed = 10;
 var tempYellow = 4;
 var tempGreen = 15;
@@ -23,7 +26,7 @@ greenCircle.classList.add('grey');
 pedCircle1.classList.add('grey');
 pedCircle2.classList.add('grey');
 
-// declarando função para o click do botão
+// função do botão Iniciar
 var iniciar = function() {
     // limpa o timer para evitar chamar o método do botão Iniciar mais de uma vez
     clearInterval(timer);
@@ -31,13 +34,19 @@ var iniciar = function() {
     clearInterval(mudar);
     yellowCircle.classList.remove('divYellow');
     yellowCircle.classList.add('grey');
+    pedCircle1.classList.add('grey');
+    pedCircle1.classList.remove('divRed');
+    pedCircle2.classList.add('grey');
+    pedCircle2.classList.remove('divGreen');
     // declarando intervalo de tempo
     timer = setInterval(function() {
         // incrementando ao contador de 1 em 1 segundo
        cont++;
        console.log(cont);
-    //    condição para ligar o semáforo vermelho
+    //    condição para ligar e desligar o semáforo vermelho
        if(cont <= tempRed) {
+            pedCircle1.classList.remove('divRed');
+            pedCircle1.classList.add('grey');
             //    remove class grey na div red
            redCircle.classList.remove('grey');
            //    adicionando class grey na div red
@@ -50,7 +59,23 @@ var iniciar = function() {
            }else{
                 redCircle.innerText = (cont);  
            };
-    //    condição para ligar o semáforo amarelo
+           if(cont > (tempRed - 5)) {
+               //   true
+               if(!flagSem) {
+                   flagSem = true;
+                   pedCircle2.classList.add('grey');
+                   pedCircle2.classList.remove('divGreen');
+               }else{
+                   flagSem = false;
+                   pedCircle2.classList.remove('grey');
+                   pedCircle2.classList.add('divGreen');
+               }
+
+           }else{
+               pedCircle2.classList.remove('grey');
+               pedCircle2.classList.add('divGreen');
+           }
+    //    condição para ligar e desligar o semáforo amarelo
        }else if(cont <= (tempRed + tempGreen)) {
             //    limpa o texto dentro da div red
            redCircle.innerText = "";
@@ -68,7 +93,11 @@ var iniciar = function() {
             }else{
                 greenCircle.innerText = (cont - tempRed);  
             };
-    //    condição para ligar o semáforo verde
+            pedCircle2.classList.remove('divGreen');
+            pedCircle2.classList.add('grey');
+            pedCircle1.classList.remove('grey');
+            pedCircle1.classList.add('divRed');
+    //    condição para ligar e desligar o semáforo verde
        }else if(cont <= (tempRed + tempYellow + tempGreen)) {
            //    limpa o texto na div yellow
            greenCircle.innerText = "";
@@ -90,26 +119,31 @@ var iniciar = function() {
        }else{
             //    zera contador
            cont = 1;
-           //    remove class divGreen na div green
+           //    remove class divYellow na div yellow
            yellowCircle.classList.remove('divYellow');
-           //    adiciona class grey na div green
+           //    adiciona class grey na div yellow
            yellowCircle.classList.add('grey');
-           //    limpa texto dentro da div green
+           //    limpa texto dentro da div yellow
            yellowCircle.innerText = "";
            redCircle.classList.remove('grey');
            redCircle.classList.add('divRed');
            redCircle.innerText = (`0${cont}`);
-        
+           pedCircle1.classList.remove('divRed');
+           pedCircle1.classList.add('grey');
+           pedCircle2.classList.remove('grey');
+           pedCircle2.classList.add('divGreen');
        }
    }, 1000);
 };
 
+// função do botão Manutenção
 function manutencao () {
     // limpa o mudar para evitar chamar o método do botão Manutenção mais de uma vez
     clearInterval(mudar);
-    // limpa o timer para evitar chamar o método do botão Iniciar mais de uma vez
+    // limpa o timer para evitar chamar o método do botão Iniciar junto ao método Manutenção
     clearInterval(timer);
     cont = 0;
+    // remove as alterações feitas no botão iniciar e volta ao padrão
     redCircle.classList.remove('divRed');
     yellowCircle.classList.remove('divYellow');
     greenCircle.classList.remove('divGreen');
@@ -119,15 +153,28 @@ function manutencao () {
     redCircle.innerText = "";
     yellowCircle.innerText = "";
     greenCircle.innerText = "";
+    pedCircle1.classList.remove('divRed');
+    pedCircle1.classList.add('grey');
+    pedCircle2.classList.remove('divGreen');
+    pedCircle2.classList.add('grey');
+    // criado função com uma condição para o semáforo entrar em manutenção
     mudar = setInterval(function() {
         if(!flag) {
         flag = true;
             yellowCircle.classList.remove('grey');
             yellowCircle.classList.add('divYellow');
+            pedCircle1.classList.remove('grey');
+            pedCircle1.classList.add('divRed');
+            pedCircle2.classList.remove('grey');
+            pedCircle2.classList.add('divGreen');
         }else{
             flag = false;
             yellowCircle.classList.add('grey');
             yellowCircle.classList.remove('divYellow');
+            pedCircle1.classList.add('grey');
+            pedCircle1.classList.remove('divRed');
+            pedCircle2.classList.add('grey');
+            pedCircle2.classList.remove('divGreen');
         }
     }, 300);
 };
