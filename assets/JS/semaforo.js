@@ -14,10 +14,17 @@ var flag = false;
 var timer = undefined;
 var mudar = undefined;
 
+// variaveis que podem ser mudadas
 // variaveis de tempo
-var tempRed = 10;
+// o valor é o tempo dos tempos 
+var tempRed = 10; 
 var tempYellow = 4;
 var tempGreen = 15;
+const tempCooldawn = 2;
+
+// variaveis de controle do botão de pedestres
+var cooldawn = 0;
+var reducaoTempSemVerde = 0;
 
 // fazendo as variaveis receber classList
 redCircle.classList.add('grey');
@@ -42,9 +49,10 @@ var iniciar = function() {
     timer = setInterval(function() {
         // incrementando ao contador de 1 em 1 segundo
        cont++;
-       console.log(cont);
+       //console.log(cont);
     //    condição para ligar e desligar o semáforo vermelho
        if(cont <= tempRed) {
+
             pedCircle1.classList.remove('divRed');
             pedCircle1.classList.add('grey');
             //    remove class grey na div red
@@ -54,6 +62,7 @@ var iniciar = function() {
            //    alterando texto dentro da div red
            redCircle.innerText = (cont);
            //    condição para imprimir texto dentro da div red
+
            if(cont <= 9) {
                redCircle.innerText = (`0${cont}`);
            }else{
@@ -75,8 +84,9 @@ var iniciar = function() {
                pedCircle2.classList.remove('grey');
                pedCircle2.classList.add('divGreen');
            }
-    //    condição para ligar e desligar o semáforo amarelo
-       }else if(cont <= (tempRed + tempGreen)) {
+    //    condição para ligar e desligar o semáforo verde
+       }else if(cont <= (tempRed + (tempGreen - reducaoTempSemVerde))) {
+
             //    limpa o texto dentro da div red
            redCircle.innerText = "";
            //    remove class divRed na div red
@@ -97,44 +107,69 @@ var iniciar = function() {
             pedCircle2.classList.add('grey');
             pedCircle1.classList.remove('grey');
             pedCircle1.classList.add('divRed');
-    //    condição para ligar e desligar o semáforo verde
-       }else if(cont <= (tempRed + tempYellow + tempGreen)) {
-           //    limpa o texto na div yellow
+
+            if(cooldawn === tempCooldawn){
+                reducaoTempSemVerde++
+            }
+
+    //    condição para ligar e desligar o semáforo amarelo
+       }else if(cont <= (tempRed + tempYellow + (tempGreen - reducaoTempSemVerde))) {
+
+            // muda o sinal verde
            greenCircle.innerText = "";
-           //    remove class divYellow na div yellow
            greenCircle.classList.remove('divGreen');
-           //    adiciona class grey na div yellow
            greenCircle.classList.add('grey');
-           //    remove class grey na div green
+          
+           
            yellowCircle.classList.remove('grey');
-           //    adiciona class divGreen na div green
            yellowCircle.classList.add('divYellow');
-           //    condição para imprimir texto dentro da div green
-           if((cont - (tempRed + tempGreen)) <= 9) {
-               yellowCircle.innerText = (`0${cont - (tempRed + tempGreen)}`);
+        
+
+           // verificação para impreção 
+           if((cont - (tempRed + (tempGreen - reducaoTempSemVerde))) <= 9) {
+               yellowCircle.innerText = (`0${cont - (tempRed + (tempGreen - reducaoTempSemVerde))}`);
             }else{
-                yellowCircle.innerText = (cont - (tempRed + tempGreen));  
+                yellowCircle.innerText = (cont - (tempRed + (tempGreen - reducaoTempSemVerde)));  
             };
     //    condição para resetar
        }else{
             //    zera contador
            cont = 1;
-           //    remove class divYellow na div yellow
+           
+           // muda o sinal amarelo
            yellowCircle.classList.remove('divYellow');
-           //    adiciona class grey na div yellow
            yellowCircle.classList.add('grey');
-           //    limpa texto dentro da div yellow
            yellowCircle.innerText = "";
+
+           // muda o sinal vermelho
            redCircle.classList.remove('grey');
            redCircle.classList.add('divRed');
            redCircle.innerText = (`0${cont}`);
+
+           // muda o semaforo do pedestre
            pedCircle1.classList.remove('divRed');
            pedCircle1.classList.add('grey');
            pedCircle2.classList.remove('grey');
            pedCircle2.classList.add('divGreen');
+
+           // cooldawn pra controlar o botão do pedestre
+           cooldawn--
+           reducaoTempSemVerde = 0;
        }
    }, 1000);
 };
+/*
+ -função do botão do pedestre-
+    ele funciona quando clica, vai decrementando 1s sempre que entra na verificação do verde
+*/ 
+function pedestre(){
+    if(cont >= (tempRed) && cont <= (tempRed + tempYellow + tempGreen) && cooldawn <= 0){
+        //alert(`cooldawn${cooldawn}`);
+        reducaoTempSemVerde = 1;
+        cooldawn = tempCooldawn;
+        //console.log(cooldawn);
+    }
+}
 
 // função do botão Manutenção
 function manutencao () {
@@ -176,5 +211,5 @@ function manutencao () {
             pedCircle2.classList.add('grey');
             pedCircle2.classList.remove('divGreen');
         }
-    }, 300);
+    }, 500);
 };

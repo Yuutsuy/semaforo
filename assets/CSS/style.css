@@ -20,6 +20,7 @@ body {
     display:flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 15px 7px 0 grey;
 }
 #container #semaforo .circles {
     position:relative;
@@ -31,7 +32,7 @@ body {
     margin:10px;
     width:85%;
     height:100%;
-    font-size:100px;
+    font-size:100px; 
 }
 
 #botao button {
@@ -46,14 +47,20 @@ body {
 .divRed {
     background-color: #FF6B6B;
     color:white;
+    box-shadow: inset 0 0 1em red;
+    box-shadow:  0 0 1em red;
 }
 .divYellow {
     background-color: #FFD93D;
     color:black;
+    box-shadow: inset 0 0 1em yellow;
+    box-shadow: 0 0 1em yellow;
 }
 .divGreen {
     background-color: #6BCB77;
     color:white;
+    box-shadow: inset 0 0 1em green;
+    box-shadow: 0 0 1em green;
 }
 
 #container #pedestre {
@@ -66,6 +73,7 @@ body {
     display:flex;
     flex-direction: column;
     border-radius:10px;
+    box-shadow: 15px 7px 0 grey;
 }
 
 #container #pedestre .pedCircle {
