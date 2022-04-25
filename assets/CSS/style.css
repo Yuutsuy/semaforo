@@ -3,12 +3,13 @@ body {
     font-family: 'Doppio One', sans-serif;
 }
 
-
+/* css da div principal */
 #container {
     width:40%;
     display:flex;
     justify-content:space-between;
 }
+/* css do semáforo */
 #container #semaforo {
     border: 2px solid black;
     border-radius:10px;
@@ -22,6 +23,7 @@ body {
     justify-content: space-between;
     box-shadow: 15px 7px 0 grey;
 }
+/* css dos circulos do semáforo */
 #container #semaforo .circles {
     position:relative;
     text-align:center;
@@ -35,27 +37,32 @@ body {
     font-size:100px; 
 }
 
+/* css dos botões */
 #botao button {
     width:150px;
     height:40px;
     margin:10px;
 }
 
+/* classe padrão dos das cores dos circulos */
 .grey {
     background-color:grey;
 }
+/* classe para chamar no circulo vermelho dos semáforos */
 .divRed {
     background-color: #FF6B6B;
     color:white;
     box-shadow: inset 0 0 1em red;
     box-shadow:  0 0 1em red;
 }
+/* classe para chamar no circulo amarelo do semáforo */
 .divYellow {
     background-color: #FFD93D;
     color:black;
     box-shadow: inset 0 0 1em yellow;
     box-shadow: 0 0 1em yellow;
 }
+/* classe para chamar no circulo verde dos semáforos */
 .divGreen {
     background-color: #6BCB77;
     color:white;
@@ -63,6 +70,7 @@ body {
     box-shadow: 0 0 1em green;
 }
 
+/* css do semáforo do pedestre */
 #container #pedestre {
     width:120px;
     height:250px;
@@ -76,6 +84,7 @@ body {
     box-shadow: 15px 7px 0 grey;
 }
 
+/* classe para padronizar os circulos do semáforo do pedestre */
 #container #pedestre .pedCircle {
     position:relative;
     text-align:center;

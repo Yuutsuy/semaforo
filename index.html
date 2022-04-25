@@ -7,28 +7,51 @@
         <title>Semaforo</title>
     </head>
     <body>
+        <!-- div principal -->
         <div id="container">
+            <!-- semáforo para os carros -->
             <div id=semaforo>
+                <!-- circulo vermelho -->
                 <div class="circles" id="red">
                     <h1></h1>
                 </div>
+                <!-- fim circulo vermelho -->
+                <!-- circulo amarelo -->
                 <div class="circles" id="yellow">
                     <h1></h1>
                 </div>
+                <!-- fim circulo amarelo -->
+                <!-- circulo verde -->
                 <div class="circles" id="green">
                     <h1></h1>
                 </div>
+                <!-- fim circulo verde -->
             </div>
+            <!-- fim semáforo para os carros -->
+            <!-- semáforo do pedestre -->
             <div id="pedestre">
+                <!-- circulo vermelho do pedestre -->
                 <div class="pedCircle" id="pedCircle1"></div>
+                <!-- fim circulo vermelho do pedestre -->
+                <!-- circulo verde do pedestre -->
                 <div class="pedCircle" id="pedCircle2"></div>
+                <!-- fim circulo verde do pedestre -->
             </div>
+            <!-- fim semáforo do pedestre -->
         </div>
+        <!-- div dos botões -->
         <div id="botao">
+            <!-- botao para iniciar processo -->
             <button id="btnMudar" onclick="iniciar()">Iniciar</button>
+            <!-- fim botao para iniciar processo -->
+            <!-- botao para manutenção -->
             <button id="btnManuntencao" onclick="manutencao()">Manutenção</button>
+            <!-- fim botao para manutenção -->
+            <!-- botao para pedestre -->
             <button id="tbPedestre" onclick="pedestre()">Pedestre</button>
+            <!-- fim botao para pedestre -->
         </div>
+        <!-- fim div dos botões -->
 
         <script src="./assets/JS/semaforo.js"></script>
     </body>
